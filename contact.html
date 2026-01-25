@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONTACT // MUNEEB SHAFIQUE</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        background: '#030303',
+                        surface: '#0A0A0A',
+                        primary: '#3B82F6',
+                        accent: '#8B5CF6',
+                        neonPink: '#EC4899',
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'spin-slow': 'spin 15s linear infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Lenis -->
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+
+    <style>
+        .input-group input:focus~label,
+        .input-group input:not(:placeholder-shown)~label,
+        .input-group textarea:focus~label,
+        .input-group textarea:not(:placeholder-shown)~label {
+            top: -12px;
+            left: 0;
+            font-size: 12px;
+            color: #3B82F6;
+        }
+
+        .holographic-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 0 40px rgba(59, 130, 246, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .holographic-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            transition: 0.5s;
+        }
+
+        .holographic-card:hover::before {
+            left: 100%;
+        }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-primary selection:text-white overflow-x-hidden">
+
+    <!-- Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-circle"></div>
+
+    <!-- WebGL Background -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 px-6 py-6 mix-blend-difference">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="text-xl font-display font-bold tracking-tighter hover-trigger"
+                data-scramble="true">MUNEEB SHAFIQUE</a>
+            <div class="hidden md:flex gap-8 text-sm font-medium text-gray-300">
+                <a href="index.html" class="hover:text-white transition-colors hover-trigger"
+                    data-scramble="true">HOME</a>
+                <a href="about.html" class="hover:text-white transition-colors hover-trigger"
+                    data-scramble="true">STORY</a>
+                <a href="projects.html" class="hover:text-white transition-colors hover-trigger"
+                    data-scramble="true">WORK</a>
+                <a href="contact.html" class="text-white hover-trigger" data-scramble="true">CONTACT</a>
+            </div>
+            <div class="magnetic-wrap hover-trigger">
+                <a href="mailto:muneebshafiq512@gmail.com"
+                    class="hidden md:block px-6 py-2 border border-white/20 rounded-full text-xs font-semibold tracking-wide hover:bg-white hover:text-black transition-all duration-300 magnetic-btn">
+                    EMAIL ME
+                </a>
+            </div>
+
+            <!-- Hamburger Button -->
+            <button id="mobile-menu-btn"
+                class="md:hidden relative w-10 h-10 flex flex-col justify-center items-center group z-[60]">
+                <span
+                    class="w-6 h-0.5 bg-white mb-1.5 transition-all duration-300 transform origin-center group-hover:scale-x-75"></span>
+                <span
+                    class="w-6 h-0.5 bg-white mt-1.5 transition-all duration-300 transform origin-center group-hover:scale-x-75"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu-overlay"
+        class="fixed inset-0 z-50 bg-black/90 backdrop-blur-xl flex flex-col justify-center items-center opacity-0 pointer-events-none transition-all duration-500">
+        <!-- Background Effects -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <div
+                class="absolute -top-[20%] -left-[20%] w-[70vw] h-[70vw] bg-blue-600/20 rounded-full blur-[100px] animate-pulse">
+            </div>
+            <div class="absolute bottom-[10%] right-[10%] w-[50vw] h-[50vw] bg-purple-600/20 rounded-full blur-[100px] animate-pulse"
+                style="animation-delay: 1s;"></div>
+        </div>
+
+        <nav class="relative z-10 flex flex-col items-center gap-8 text-center">
+            <div class="overflow-hidden">
+                <a href="index.html"
+                    class="mobile-link block text-5xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 hover:to-white transition-all transform translate-y-full">HOME</a>
+            </div>
+            <div class="overflow-hidden">
+                <a href="about.html"
+                    class="mobile-link block text-5xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 hover:to-white transition-all transform translate-y-full">STORY</a>
+            </div>
+            <div class="overflow-hidden">
+                <a href="projects.html"
+                    class="mobile-link block text-5xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 hover:to-white transition-all transform translate-y-full">WORK</a>
+            </div>
+            <div class="overflow-hidden">
+                <a href="contact.html"
+                    class="mobile-link block text-5xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 hover:to-white transition-all transform translate-y-full">CONTACT</a>
+            </div>
+        </nav>
+
+        <div class="mt-12 overflow-hidden">
+            <a href="mailto:muneebshafiq512@gmail.com"
+                class="mobile-cta block px-8 py-3 bg-white text-black rounded-full font-bold text-lg hover:scale-105 transition-transform translate-y-full opacity-0">
+                LET'S TALK
+            </a>
+        </div>
+
+        <div class="absolute bottom-10 text-xs font-mono text-gray-500">
+            MUNEEB SHAFIQUE // 2026
+        </div>
+    </div>
+
+    <main class="relative min-h-screen flex items-center pt-24 pb-12">
+
+        <!-- Decorative Background Blobs -->
+        <div
+            class="absolute top-20 left-20 w-72 h-72 bg-purple-500/20 rounded-full mix-blend-screen filter blur-[100px] animate-blob">
+        </div>
+        <div
+            class="absolute top-20 right-20 w-72 h-72 bg-blue-500/20 rounded-full mix-blend-screen filter blur-[100px] animate-blob animation-delay-2000">
+        </div>
+        <div
+            class="absolute -bottom-8 left-1/2 w-72 h-72 bg-pink-500/20 rounded-full mix-blend-screen filter blur-[100px] animate-blob animation-delay-4000">
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relativ z-10">
+
+            <!-- Left: Info & 3D Interactive -->
+            <div class="h-full flex flex-col justify-center order-2 lg:order-1">
+                <div class="mb-12">
+                    <h1 class="font-display text-5xl md:text-7xl font-bold mb-6">
+                        Let's Talk <br>
+                        <span
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Innovation.</span>
+                    </h1>
+                    <p class="text-gray-400 text-lg max-w-md leading-relaxed">
+                        Have a project in mind? Looking to build the next big thing in AI or Web?
+                        Send me a signal.
+                    </p>
+                </div>
+
+                <!-- Contact Tiles -->
+                <div class="space-y-4">
+                    <a href="mailto:muneebshafiq512@gmail.com"
+                        class="flex items-center gap-4 p-4 rounded-xl border border-white/5 bg-white/5 hover:bg-white/10 transition-all hover-trigger group">
+                        <div
+                            class="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-400 group-hover:scale-110 transition-transform">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                                </path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="text-xs text-gray-500 font-mono">MAIL CHANNEL</div>
+                            <div class="text-white font-medium">muneebshafiq512@gmail.com</div>
+                        </div>
+                    </a>
+
+                    <a href="tel:+923447958445"
+                        class="flex items-center gap-4 p-4 rounded-xl border border-white/5 bg-white/5 hover:bg-white/10 transition-all hover-trigger group">
+                        <div
+                            class="w-12 h-12 rounded-full bg-green-500/10 flex items-center justify-center text-green-400 group-hover:scale-110 transition-transform">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path
+                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="text-xs text-gray-500 font-mono">SECURE LINE</div>
+                            <div class="text-white font-medium">+92 344 7958445</div>
+                        </div>
+                    </a>
+
+                    <div class="flex gap-4 mt-6">
+                        <a href="https://www.linkedin.com/in/muneeb-shafiq/" target="_blank"
+                            class="flex-1 p-4 rounded-xl border border-white/5 bg-white/5 hover:bg-[#0077b5] hover:text-white transition-all text-center text-sm font-bold text-gray-400 hover-trigger">
+                            LINKEDIN
+                        </a>
+                        <a href="https://github.com/muneeb-shafique" target="_blank"
+                            class="flex-1 p-4 rounded-xl border border-white/5 bg-white/5 hover:bg-[#333] hover:text-white transition-all text-center text-sm font-bold text-gray-400 hover-trigger">
+                            GITHUB
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Holographic Form -->
+            <div class="order-1 lg:order-2">
+                <div class="holographic-card rounded-3xl p-8 md:p-12 relative w-full">
+                    <!-- Spinning Loader (Hidden by default) -->
+                    <div id="loader"
+                        class="absolute inset-0 z-50 bg-black/80 backdrop-blur-sm flex flex-col items-center justify-center hidden">
+                        <div class="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin">
+                        </div>
+                        <p class="mt-4 font-mono text-blue-400 blink">ENCRYPTING & SENDING...</p>
+                    </div>
+
+                    <!-- Success Message (Hidden by default) -->
+                    <div id="success"
+                        class="absolute inset-0 z-50 bg-black/90 backdrop-blur-md flex flex-col items-center justify-center hidden text-center p-8">
+                        <div class="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mb-6">
+                            <svg class="w-10 h-10 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-3xl font-bold font-display mb-2">Message Sent!</h3>
+                        <p class="text-gray-400">I'll decrypt your message and get back to you shortly.</p>
+                        <button onclick="resetForm()"
+                            class="mt-8 px-6 py-2 border border-white/20 rounded-full hover:bg-white hover:text-black transition-all font-mono text-sm">SEND
+                            ANOTHER</button>
+                    </div>
+
+                    <h2 class="text-2xl font-bold mb-8 flex items-center gap-2">
+                        <span class="w-2 h-8 bg-blue-500 rounded-full"></span>
+                        Initiate Protocol
+                    </h2>
+
+                    <form id="contactForm" action="https://formsubmit.co/muneebshafiq512@gmail.com" method="POST"
+                        class="space-y-8">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_subject" value="New Portfolio Contact!">
+                        <input type="hidden" name="_template" value="table">
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="input-group relative">
+                                <input type="text" name="name" id="name" required placeholder=" "
+                                    class="w-full bg-transparent border-b border-gray-700 py-3 text-white focus:outline-none focus:border-blue-500 transition-colors peer">
+                                <label for="name"
+                                    class="absolute left-0 top-3 text-gray-500 transition-all duration-300 pointer-events-none">NAME_ID</label>
+                            </div>
+                            <div class="input-group relative">
+                                <input type="email" name="email" id="email" required placeholder=" "
+                                    class="w-full bg-transparent border-b border-gray-700 py-3 text-white focus:outline-none focus:border-blue-500 transition-colors peer">
+                                <label for="email"
+                                    class="absolute left-0 top-3 text-gray-500 transition-all duration-300 pointer-events-none">EMAIL_ADDRESS</label>
+                            </div>
+                        </div>
+
+                        <div class="input-group relative">
+                            <input type="text" name="subject" id="subject" required placeholder=" "
+                                class="w-full bg-transparent border-b border-gray-700 py-3 text-white focus:outline-none focus:border-blue-500 transition-colors peer">
+                            <label for="subject"
+                                class="absolute left-0 top-3 text-gray-500 transition-all duration-300 pointer-events-none">SUBJECT_LINE</label>
+                        </div>
+
+                        <div class="input-group relative">
+                            <textarea name="message" id="message" rows="4" required placeholder=" "
+                                class="w-full bg-transparent border-b border-gray-700 py-3 text-white focus:outline-none focus:border-blue-500 transition-colors peer resize-none"></textarea>
+                            <label for="message"
+                                class="absolute left-0 top-3 text-gray-500 transition-all duration-300 pointer-events-none">TRANSMISSION_DATA</label>
+                        </div>
+
+                        <div class="pt-4">
+                            <button type="submit"
+                                class="w-full py-4 bg-white/5 border border-white/10 hover:bg-white hover:text-black rounded-xl font-bold tracking-wider transition-all duration-300 hover-trigger relative overflow-hidden group">
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 translate-x-[-100%] group-hover:translate-x-100 transition-transform duration-700">
+                                </div>
+                                <span class="relative z-10">TRANSMIT MESSAGE</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-10 text-center border-t border-white/10">
+        <p class="text-xs text-gray-700">© 2026 Muneeb Shafique.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        // Form Handling Logic
+        const form = document.getElementById('contactForm');
+        const loader = document.getElementById('loader');
+        const success = document.getElementById('success');
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            loader.classList.remove('hidden');
+
+            const formData = new FormData(form);
+
+            fetch(form.action, {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => {
+                    loader.classList.add('hidden');
+                    if (response.ok) {
+                        success.classList.remove('hidden');
+                        form.reset();
+                    } else {
+                        alert('Transmission Failed. Try again.');
+                    }
+                })
+                .catch(error => {
+                    loader.classList.add('hidden');
+                    alert('Connection Error. Check internet status.');
+                });
+        });
+
+        function resetForm() {
+            success.classList.add('hidden');
+        }
+
+        // Initialize Global Scripts
+        // (Assuming script.js handles the canvas bg)
+    </script>
+    <script src="script.js"></script>
+</body>
+
+</html>
