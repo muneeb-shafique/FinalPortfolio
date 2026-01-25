@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://muneeb-shafique.github.io/FinalPortfolio/sitemap.xml
