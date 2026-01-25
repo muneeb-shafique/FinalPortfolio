@@ -391,9 +391,6 @@ const setupMobileMenu = () => {
     });
 };
 
-    });
-};
-
 // --- 9. 3D Tilt Cards ---
 const initTiltCards = () => {
     const cards = document.querySelectorAll('.tilt-card');
@@ -419,9 +416,378 @@ const initTiltCards = () => {
     });
 };
 
+
+
+// --- 10. Workflow Animation ---
+const initWorkflowAnimation = () => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const line = document.getElementById('workflow-line');
+    const steps = document.querySelectorAll('.workflow-step');
+
+    if (line) {
+        gsap.to(line, {
+            height: '100%',
+            ease: 'none',
+            scrollTrigger: {
+                trigger: '.workflow-step', // Start roughly when first step appears
+                start: 'top 70%',
+                end: 'bottom 50%',
+                scrub: 1
+            }
+        });
+    }
+
+    steps.forEach(step => {
+        gsap.to(step, {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: 'power3.out',
+            scrollTrigger: {
+                trigger: step,
+                start: 'top 85%',
+                toggleActions: 'play none none reverse'
+            }
+        });
+    });
+};
+
+
+
+// --- 11. Blog System ---
+const initBlogSystem = () => {
+    const blogGrid = document.getElementById('blog-grid');
+    const searchInput = document.getElementById('blog-search');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const noResults = document.getElementById('no-results');
+
+    if (!blogGrid) return;
+
+    // Demo Data
+    const blogs = [
+        {
+            title: "The Future of AI in 2026",
+            excerpt: "Exploring the next generation of generative models and their impact on software architecture.",
+            category: "ai",
+            date: "Jan 24, 2026",
+            readTime: "5 min",
+            tags: ["AI", "Future", "Tech"],
+            link: "Blogs/ai-future-2026.html"
+        },
+        {
+            title: "Zero-Trust Security Architecture",
+            excerpt: "Why traditional perimeter defense is dead and how to implement identity-based security.",
+            category: "cyber",
+            date: "Jan 18, 2026",
+            readTime: "8 min",
+            tags: ["Security", "Cyber", "Protocol"],
+            link: "Blogs/zero-trust-security.html"
+        },
+        {
+            title: "Optimizing Python for Scale",
+            excerpt: "Advanced techniques for making Python applications handle millions of requests.",
+            category: "data",
+            date: "Jan 10, 2026",
+            readTime: "6 min",
+            tags: ["Python", "Performance", "Backend"],
+            link: "Blogs/optimizing-python.html"
+        },
+        {
+            title: "Modern Desktop Architecture",
+            excerpt: "Why C# and .NET 9 are the powerhouses for high-performance native desktop applications.",
+            category: "web", // Using 'web' as proxy for 'dev' or adding 'csharp' category
+            date: "Feb 02, 2026",
+            readTime: "7 min",
+            tags: ["C#", "Desktop", ".NET"],
+            link: "Blogs/modern-csharp-dev.html"
+        },
+        {
+            title: "State of the Web 2026",
+            excerpt: "The post-framework era: Micro-frontends, Edge Computing, and Generative UI.",
+            category: "web",
+            date: "Jan 05, 2026",
+            readTime: "6 min",
+            tags: ["Web", "Future", "Arch"],
+            link: "Blogs/next-gen-web.html"
+        },
+        {
+            title: "End-to-End ML Pipelines",
+            excerpt: "From data ingestion to model deployment: automating the lifecycle of AI with MLOps.",
+            category: "data",
+            date: "Dec 15, 2025",
+            readTime: "9 min",
+            tags: ["MLOps", "Data", "Pipeline"],
+            link: "Blogs/ml-pipelines.html"
+        }
+    ];
+
+    const renderBlogs = (filteredBlogs) => {
+        blogGrid.innerHTML = '';
+
+        if (filteredBlogs.length === 0) {
+            noResults.classList.remove('hidden');
+            return;
+        }
+
+        noResults.classList.add('hidden');
+
+        filteredBlogs.forEach((blog, index) => {
+            const card = document.createElement('div');
+            card.className = "glass-panel p-8 rounded-2xl border border-white/5 relative overflow-hidden group hover:border-blue-500/30 transition-all duration-300 opacity-0 translate-y-4";
+            card.style.animation = `fadeInUp 0.5s ease forwards ${index * 0.1}s`;
+
+            // Generate tags HTML
+            const tagsHtml = blog.tags.map(tag =>
+                `<span class="text-[10px] font-mono border border-white/10 px-2 py-1 rounded text-gray-400 group-hover:text-blue-400 group-hover:border-blue-500/30 transition-colors">${tag}</span>`
+            ).join('');
+
+            card.innerHTML = `
+                <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                <div class="relative z-10 flex flex-col h-full">
+                    <div class="flex justify-between items-start mb-6">
+                        <span class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-xs font-bold text-gray-500 group-hover:bg-blue-500 group-hover:text-white transition-colors">
+                            ${index + 1 < 10 ? '0' + (index + 1) : index + 1}
+                        </span>
+                        <span class="text-xs font-mono text-gray-500">${blog.date}</span>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold mb-4 group-hover:text-blue-400 transition-colors">${blog.title}</h3>
+                    <p class="text-gray-400 text-sm mb-6 flex-grow">${blog.excerpt}</p>
+                    
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        ${tagsHtml}
+                    </div>
+                    
+                    <div class="flex items-center justify-between pt-6 border-t border-white/5 mt-auto">
+                        <span class="text-xs font-mono text-gray-500">${blog.readTime} READ</span>
+                        <a href="${blog.link}" class="text-xs font-bold tracking-wider hover:text-white transition-colors flex items-center gap-2 group/link">
+                            READ ENTRY <span class="group-hover/link:translate-x-1 transition-transform">→</span>
+                        </a>
+                    </div>
+                </div>
+            `;
+
+            blogGrid.appendChild(card);
+        });
+    };
+
+    // Initial Render
+    renderBlogs(blogs);
+
+    // Search Logic
+    searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase();
+        const filtered = blogs.filter(blog =>
+            blog.title.toLowerCase().includes(query) ||
+            blog.excerpt.toLowerCase().includes(query) ||
+            blog.tags.some(tag => tag.toLowerCase().includes(query))
+        );
+        renderBlogs(filtered);
+    });
+
+    // Filter Logic
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // UI Update
+            filterBtns.forEach(b => {
+                b.classList.remove('active', 'bg-white/10', 'text-white');
+                b.classList.add('bg-transparent', 'text-gray-400');
+            });
+            btn.classList.remove('bg-transparent', 'text-gray-400');
+            btn.classList.add('active', 'bg-white/10', 'text-white');
+
+            // Filtering
+            const category = btn.dataset.filter;
+            if (category === 'all') {
+                renderBlogs(blogs);
+            } else {
+                const filtered = blogs.filter(blog => blog.category === category);
+                renderBlogs(filtered);
+            }
+        });
+    });
+};
+
+
+
+// --- 12. Blog Interactions (New) ---
+const initBlogInteractions = () => {
+    // 1. Reading Progress Bar
+    const progressBar = document.createElement('div');
+    progressBar.id = 'reading-progress';
+    document.body.appendChild(progressBar);
+
+    window.addEventListener('scroll', () => {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        progressBar.style.width = scrolled + "%";
+    });
+
+    // 1.5 Reading Stats (New)
+    const article = document.querySelector('article');
+    if (!article) return;
+
+    const text = article.innerText;
+    const wpm = 200;
+    const words = text.trim().split(/\s+/).length;
+    const time = Math.ceil(words / wpm);
+
+    // Create or Update stats container in sidebar if it exists
+    const statsContainer = document.getElementById('reading-stats');
+    if (statsContainer) {
+        statsContainer.innerHTML = `
+            <span>WORDS: ${words}</span>
+            <span>TIME: ${time} MIN</span>
+        `;
+    }
+
+    // 2. Interaction Bar (Like & Share)
+    const interactionBar = document.createElement('div');
+    interactionBar.className = 'interaction-bar';
+    interactionBar.innerHTML = `
+        <button class="interaction-btn like-btn" id="like-btn">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+            <span id="like-count">0</span>
+        </button>
+        <div class="w-px h-4 bg-white/20"></div>
+        <button class="interaction-btn share-btn" id="share-btn">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
+            <span>Share</span>
+        </button>
+    `;
+    document.body.appendChild(interactionBar);
+
+    // Like Logic with LocalStorage
+    const likeBtn = document.getElementById('like-btn');
+    const likeCount = document.getElementById('like-count');
+    const pageId = window.location.pathname; // Unique ID per page
+
+    // Load state
+    let likes = parseInt(localStorage.getItem(`likes_${pageId}`)) || Math.floor(Math.random() * 50) + 10;
+    let hasLiked = localStorage.getItem(`liked_${pageId}`) === 'true';
+
+    likeCount.innerText = likes;
+    if (hasLiked) likeBtn.classList.add('liked');
+
+    likeBtn.addEventListener('click', () => {
+        if (hasLiked) {
+            likes--;
+            hasLiked = false;
+            likeBtn.classList.remove('liked');
+        } else {
+            likes++;
+            hasLiked = true;
+            likeBtn.classList.add('liked');
+
+            // Heart animation
+            gsap.fromTo(likeBtn.querySelector('svg'),
+                { scale: 1 },
+                { scale: 1.5, duration: 0.2, yoyo: true, repeat: 1 }
+            );
+        }
+        likeCount.innerText = likes;
+        localStorage.setItem(`likes_${pageId}`, likes);
+        localStorage.setItem(`liked_${pageId}`, hasLiked);
+    });
+
+    // Share Logic
+    const shareBtn = document.getElementById('share-btn');
+    shareBtn.addEventListener('click', async () => {
+        const shareData = {
+            title: document.title,
+            text: 'Check out this article!',
+            url: window.location.href
+        };
+
+        if (navigator.share) {
+            try {
+                await navigator.share(shareData);
+            } catch (err) {
+                console.log('Share canceled');
+            }
+        } else {
+            // Fallback: Copy to clipboard
+            navigator.clipboard.writeText(window.location.href);
+            const span = shareBtn.querySelector('span');
+            const originalText = span.innerText;
+            span.innerText = 'Copied!';
+            setTimeout(() => { span.innerText = originalText; }, 2000);
+        }
+    });
+
+    // 3. Code Copy Buttons
+    document.querySelectorAll('pre').forEach(pre => {
+        const btn = document.createElement('button');
+        btn.className = 'copy-btn';
+        btn.innerText = 'Copy';
+        pre.appendChild(btn);
+
+        btn.addEventListener('click', () => {
+            const code = pre.querySelector('code') ? pre.querySelector('code').innerText : pre.innerText.replace('Copy', '');
+            navigator.clipboard.writeText(code);
+            btn.innerText = 'Copied!';
+            btn.classList.add('copied');
+            setTimeout(() => {
+                btn.innerText = 'Copy';
+                btn.classList.remove('copied');
+            }, 2000);
+        });
+    });
+
+    // 4. Sidebar Functionality (Newsletter & Tags)
+    const newsletterForm = document.querySelector('.newsletter-form');
+    if (newsletterForm) {
+        const btn = newsletterForm.querySelector('button');
+        const input = newsletterForm.querySelector('input');
+
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (input.value.includes('@')) {
+                btn.innerText = 'SUBSCRIBED!';
+                btn.style.backgroundColor = '#10B981'; // Green
+                btn.style.color = 'white';
+                input.value = '';
+                setTimeout(() => {
+                    btn.innerText = 'SUBSCRIBE';
+                    btn.style.backgroundColor = 'white';
+                    btn.style.color = 'black';
+                }, 3000);
+            } else {
+                alert('Please enter a valid neural address.');
+            }
+        });
+    }
+
+    // Make tags clickable (Navigate to main blog page with filter)
+    document.querySelectorAll('.tag-cloud .tag-chip').forEach(tag => {
+        tag.style.cursor = 'pointer';
+        tag.addEventListener('click', () => {
+            // Since there is no real backend, we just show a toast for now
+            // In a real app: window.location.href = '../blogs.html?tag=' + tag.innerText.replace('#', '');
+            const originalText = tag.innerText;
+            tag.innerText = 'FILTERING...';
+            tag.style.borderColor = '#3B82F6';
+            tag.style.color = '#3B82F6';
+
+            setTimeout(() => {
+                tag.innerText = originalText;
+                tag.style.borderColor = 'rgba(255,255,255,0.05)';
+                tag.style.color = '#9CA3AF';
+                alert(`Redirecting to archives filtered by ${originalText}... (Simulation)`);
+            }, 800);
+        });
+    });
+};
+
 window.addEventListener('DOMContentLoaded', () => {
     initThreeJS();
     initGSAP();
     setupMobileMenu();
     initTiltCards();
+    initWorkflowAnimation();
+    initBlogSystem();
+    initBlogInteractions();
 });

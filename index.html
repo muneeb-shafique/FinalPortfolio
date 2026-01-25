@@ -63,6 +63,8 @@
                     data-scramble="true">STORY</a>
                 <a href="projects.html" class="hover:text-white transition-colors hover-trigger"
                     data-scramble="true">WORK</a>
+                <a href="blogs.html" class="hover:text-white transition-colors hover-trigger"
+                    data-scramble="true">BLOGS</a>
                 <a href="contact.html" class="hover:text-white transition-colors hover-trigger"
                     data-scramble="true">CONTACT</a>
             </div>
@@ -108,6 +110,10 @@
             <div class="overflow-hidden">
                 <a href="projects.html"
                     class="mobile-link block text-5xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 hover:to-white transition-all transform translate-y-full">WORK</a>
+            </div>
+            <div class="overflow-hidden">
+                <a href="blogs.html"
+                    class="mobile-link block text-5xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 hover:to-white transition-all transform translate-y-full">BLOGS</a>
             </div>
             <div class="overflow-hidden">
                 <a href="contact.html"
@@ -478,6 +484,137 @@
         </div>
     </section>
 
+    </section>
+
+    <!-- Workflow Section: The Algorithm -->
+    <section class="py-32 relative z-10 border-t border-white/5 bg-black/20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-24">
+                <h2 class="font-display text-4xl md:text-6xl font-bold mb-4">The <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">Algorithm</span>
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">My systematic approach to solving complex problems.</p>
+            </div>
+
+            <div class="relative max-w-4xl mx-auto">
+                <!-- Center Line -->
+                <div class="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-white/10 md:-translate-x-1/2"></div>
+                <!-- Animated Line -->
+                <div id="workflow-line"
+                    class="absolute left-4 md:left-1/2 top-0 w-px bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500 md:-translate-x-1/2 h-0 transition-all duration-100 ease-linear">
+                </div>
+
+                <!-- Steps -->
+                <div class="space-y-24">
+                    <!-- Step 1 -->
+                    <div
+                        class="relative grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center workflow-step opacity-0 translate-y-8">
+                        <div class="pl-12 md:pl-0 md:text-right order-1">
+                            <h3 class="text-2xl font-bold mb-2 text-white">Input Analysis</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">Validating requirements, understanding
+                                constraints, and establishing robust data pipelines.</p>
+                        </div>
+                        <div
+                            class="absolute left-4 md:left-1/2 -translate-x-[5px] w-2.5 h-2.5 bg-blue-500 rounded-full shadow-[0_0_15px_rgba(59,130,246,0.8)] z-10 mt-1.5 md:mt-0">
+                        </div>
+                        <div class="pl-12 md:pl-0 order-2">
+                            <div
+                                class="p-6 glass-panel rounded-xl border border-blue-500/20 relative overflow-hidden group">
+                                <div
+                                    class="absolute inset-0 bg-blue-500/10 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                                </div>
+                                <span class="relative z-10 text-blue-400 font-mono text-xs mb-2 block">> STEP_01</span>
+                                <div class="relative z-10 font-mono text-gray-300 text-xs">
+                                    def analyze(data):<br>
+                                    &nbsp;&nbsp;return patterns
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div
+                        class="relative grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center workflow-step opacity-0 translate-y-8">
+                        <div class="pl-12 md:pl-0 order-1 md:order-2">
+                            <h3 class="text-2xl font-bold mb-2 text-white">Processing Core</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">Developing scalable logic using efficient
+                                algorithms and modern frameworks.</p>
+                        </div>
+                        <div
+                            class="absolute left-4 md:left-1/2 -translate-x-[5px] w-2.5 h-2.5 bg-purple-500 rounded-full shadow-[0_0_15px_rgba(168,85,247,0.8)] z-10 mt-1.5 md:mt-0">
+                        </div>
+                        <div class="pl-12 md:pl-0 order-2 md:order-1 md:text-right">
+                            <div
+                                class="p-6 glass-panel rounded-xl border border-purple-500/20 relative overflow-hidden group">
+                                <div
+                                    class="absolute inset-0 bg-purple-500/10 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                                </div>
+                                <span class="relative z-10 text-purple-400 font-mono text-xs mb-2 block">>
+                                    STEP_02</span>
+                                <div class="relative z-10 font-mono text-gray-300 text-xs text-left">
+                                    class System(Core):<br>
+                                    &nbsp;&nbsp;await deploy()
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div
+                        class="relative grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center workflow-step opacity-0 translate-y-8">
+                        <div class="pl-12 md:pl-0 md:text-right order-1">
+                            <h3 class="text-2xl font-bold mb-2 text-white">Refinement</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">Rigorous testing, optimization, and
+                                security auditing to ensure zero-day stability.</p>
+                        </div>
+                        <div
+                            class="absolute left-4 md:left-1/2 -translate-x-[5px] w-2.5 h-2.5 bg-pink-500 rounded-full shadow-[0_0_15px_rgba(236,72,153,0.8)] z-10 mt-1.5 md:mt-0">
+                        </div>
+                        <div class="pl-12 md:pl-0 order-2">
+                            <div
+                                class="p-6 glass-panel rounded-xl border border-pink-500/20 relative overflow-hidden group">
+                                <div
+                                    class="absolute inset-0 bg-pink-500/10 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                                </div>
+                                <span class="relative z-10 text-pink-400 font-mono text-xs mb-2 block">> STEP_03</span>
+                                <div class="relative z-10 font-mono text-gray-300 text-xs">
+                                    assert quality > 99<br>
+                                    optimize(memory)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div
+                        class="relative grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center workflow-step opacity-0 translate-y-8">
+                        <div class="pl-12 md:pl-0 order-1 md:order-2">
+                            <h3 class="text-2xl font-bold mb-2 text-white">Execution</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">Deployment to production environments.
+                                Continuous monitoring and feedback loops.</p>
+                        </div>
+                        <div
+                            class="absolute left-4 md:left-1/2 -translate-x-[5px] w-2.5 h-2.5 bg-green-500 rounded-full shadow-[0_0_15px_rgba(34,197,94,0.8)] z-10 mt-1.5 md:mt-0">
+                        </div>
+                        <div class="pl-12 md:pl-0 order-2 md:order-1 md:text-right">
+                            <div
+                                class="p-6 glass-panel rounded-xl border border-green-500/20 relative overflow-hidden group">
+                                <div
+                                    class="absolute inset-0 bg-green-500/10 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                                </div>
+                                <span class="relative z-10 text-green-400 font-mono text-xs mb-2 block">> STEP_04</span>
+                                <div class="relative z-10 font-mono text-gray-300 text-xs text-left">
+                                    >> SYSTEM_ONLINE<br>
+                                    >> 200 OK
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer id="contact" class="py-20 border-t border-white/10 text-center relative overflow-hidden">
         <div class="absolute inset-0 bg-gradient-to-t from-blue-900/10 to-transparent pointer-events-none"></div>
@@ -495,7 +632,6 @@
             <div class="flex justify-center gap-8 mt-16 text-sm text-gray-500">
                 <a href="https://www.linkedin.com/in/muneeb-shafiq/"
                     class="hover:text-white transition-colors">LinkedIn</a>
-                <a href="#" class="hover:text-white transition-colors">Fiverr</a>
                 <a href="https://github.com/muneeb-shafique" class="hover:text-white transition-colors">GitHub</a>
             </div>
             <p class="mt-8 text-xs text-gray-700">© 2026 Muneeb Shafique.</p>

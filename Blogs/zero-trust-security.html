@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZERO TRUST // MUNEEB</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        background: '#030303',
+                        surface: '#0A0A0A',
+                        primary: '#3B82F6',
+                        accent: '#8B5CF6',
+                        neonPink: '#EC4899',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../style.css">
+
+    <!-- Lenis -->
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+</head>
+
+<body class="antialiased selection:bg-green-500 selection:text-black">
+
+    <!-- Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-circle"></div>
+
+    <!-- WebGL Background -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 px-6 py-6 mix-blend-difference">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="../index.html" class="text-xl font-display font-bold tracking-tighter hover-trigger"
+                data-scramble="true">MUNEEB SHAFIQUE</a>
+            <div class="hidden md:flex gap-8 text-sm font-medium text-gray-300">
+                <a href="../index.html" class="hover:text-white transition-colors hover-trigger"
+                    data-scramble="true">HOME</a>
+                <a href="../about.html" class="hover:text-white transition-colors hover-trigger"
+                    data-scramble="true">STORY</a>
+                <a href="../projects.html" class="hover:text-white transition-colors hover-trigger"
+                    data-scramble="true">WORK</a>
+                <a href="../blogs.html" class="text-white hover-trigger" data-scramble="true">BLOGS</a>
+                <a href="../contact.html" class="hover:text-white transition-colors hover-trigger"
+                    data-scramble="true">CONTACT</a>
+            </div>
+            <div class="magnetic-wrap hover-trigger">
+                <a href="mailto:muneebshafiq512@gmail.com"
+                    class="hidden md:block px-6 py-2 border border-white/20 rounded-full text-xs font-semibold tracking-wide hover:bg-white hover:text-black transition-all duration-300 magnetic-btn">
+                    EMAIL ME
+                </a>
+            </div>
+
+            <!-- Hamburger Button -->
+            <button id="mobile-menu-btn"
+                class="md:hidden relative w-10 h-10 flex flex-col justify-center items-center group z-[60]">
+                <span
+                    class="w-6 h-0.5 bg-white mb-1.5 transition-all duration-300 transform origin-center group-hover:scale-x-75"></span>
+                <span
+                    class="w-6 h-0.5 bg-white mt-1.5 transition-all duration-300 transform origin-center group-hover:scale-x-75"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu-overlay"
+        class="fixed inset-0 z-50 bg-black/90 backdrop-blur-xl flex flex-col justify-center items-center opacity-0 pointer-events-none transition-all duration-500">
+        <!-- Background Effects -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <div
+                class="absolute -top-[20%] -left-[20%] w-[70vw] h-[70vw] bg-green-600/20 rounded-full blur-[100px] animate-pulse">
+            </div>
+            <div class="absolute bottom-[10%] right-[10%] w-[50vw] h-[50vw] bg-blue-600/20 rounded-full blur-[100px] animate-pulse"
+                style="animation-delay: 1s;"></div>
+        </div>
+
+        <nav class="relative z-10 flex flex-col items-center gap-8 text-center">
+            <div class="overflow-hidden">
+                <a href="../index.html"
+                    class="mobile-link block text-5xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 hover:to-white transition-all transform translate-y-full">HOME</a>
+            </div>
+            <div class="overflow-hidden">
+                <a href="../about.html"
+                    class="mobile-link block text-5xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 hover:to-white transition-all transform translate-y-full">STORY</a>
+            </div>
+            <div class="overflow-hidden">
+                <a href="../projects.html"
+                    class="mobile-link block text-5xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 hover:to-white transition-all transform translate-y-full">WORK</a>
+            </div>
+            <div class="overflow-hidden">
+                <a href="../blogs.html"
+                    class="mobile-link block text-5xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 hover:to-white transition-all transform translate-y-full">BLOGS</a>
+            </div>
+            <div class="overflow-hidden">
+                <a href="../contact.html"
+                    class="mobile-link block text-5xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 hover:to-white transition-all transform translate-y-full">CONTACT</a>
+            </div>
+        </nav>
+
+        <div class="mt-12 overflow-hidden">
+            <a href="mailto:muneebshafiq512@gmail.com"
+                class="mobile-cta block px-8 py-3 bg-white text-black rounded-full font-bold text-lg hover:scale-105 transition-transform translate-y-full opacity-0">
+                LET'S TALK
+            </a>
+        </div>
+
+        <div class="absolute bottom-10 text-xs font-mono text-gray-500">
+            MUNEEB SHAFIQUE // 2026
+        </div>
+    </div>
+
+    <!-- Article Hero -->
+    <header class="relative pt-40 pb-20 px-6">
+        <div class="max-w-4xl mx-auto">
+            <!-- Breadcrumbs -->
+            <div class="flex items-center gap-2 text-xs font-mono text-gray-500 mb-8">
+                <a href="../blogs.html" class="hover:text-green-400 transition-colors">ARCHIVE</a>
+                <span>/</span>
+                <span class="text-green-400">SEC_PROTOCOL_ZT</span>
+            </div>
+
+            <h1 class="font-display text-5xl md:text-7xl font-bold mb-8 leading-tight">
+                Zero-Trust Security: <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-600">Trust No One,
+                    Verify Everything</span>
+            </h1>
+
+            <div class="flex flex-wrap items-center gap-6 text-sm text-gray-400 border-t border-white/10 pt-6">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-full overflow-hidden border border-white/10">
+                        <img src="../Images/Person/image1.jpg" alt="Author" class="w-full h-full object-cover">
+                    </div>
+                    <span class="font-semibold text-white">Muneeb Shafique</span>
+                </div>
+                <span>•</span>
+                <span>Jan 18, 2026</span>
+                <span>•</span>
+                <span class="flex items-center gap-1">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    20 MIN READ
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-12 relative">
+        <!-- Article Content -->
+        <article class="py-12 relative z-10">
+            <!-- Featured Image -->
+            <div class="w-full aspect-video rounded-3xl overflow-hidden mb-16 border border-white/10 relative group">
+                <div
+                    class="absolute inset-0 bg-green-500/20 mix-blend-overlay group-hover:opacity-0 transition-opacity duration-700">
+                </div>
+                <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=2940&auto=format&fit=crop"
+                    alt="Cybersecurity"
+                    class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-1000">
+            </div>
+
+            <!-- Content Body -->
+            <div class="prose prose-invert prose-lg max-w-none space-y-12">
+                <p class="lead text-xl text-gray-300 leading-relaxed drop-cap">
+                    The castle-and-moat security model is obsolete. In a distributed cloud environment where employees
+                    access data from coffee shops and AI agents interact with databases, the perimeter has dissolved.
+                    Welcome to the era of <strong>Zero-Trust Architecture (ZTA)</strong>. It is not just technology; it
+                    is a philosophy.
+                </p>
+
+                <h2 id="core-principles"
+                    class="font-display text-3xl font-bold mb-6 text-white flex items-center gap-3">
+                    <span class="text-green-500">01.</span> Core Principles
+                </h2>
+                <div class="p-8 bg-green-900/10 border border-green-500/20 rounded-xl mb-8">
+                    <h3 class="text-green-400 font-bold mb-2">The Mantra</h3>
+                    <p class="text-gray-300 italic mb-4">"Never trust, always verify."</p>
+                    <p class="text-sm text-gray-400">
+                        Traditional security assumed that everything inside the firewall was safe. Zero Trust assumes
+                        the network is always hostile, and internal and external threats exist at all times.
+                    </p>
+                </div>
+
+                <h3 class="font-bold text-white text-xl mt-8">Three Pillars of ZT</h3>
+                <ul class="space-y-4 text-gray-400">
+                    <li class="flex gap-4">
+                        <div
+                            class="w-8 h-8 shrink-0 rounded-full border border-green-500/50 flex items-center justify-center text-green-500 font-bold bg-green-900/20">
+                            1</div>
+                        <div>
+                            <strong class="text-white block">Verify Explicitly</strong>
+                            Always authenticate and authorize based on all available data points: user identity,
+                            location, device health, service or workload, data classification, and anomalies.
+                        </div>
+                    </li>
+                    <li class="flex gap-4">
+                        <div
+                            class="w-8 h-8 shrink-0 rounded-full border border-green-500/50 flex items-center justify-center text-green-500 font-bold bg-green-900/20">
+                            2</div>
+                        <div>
+                            <strong class="text-white block">Use Least Privilege Access</strong>
+                            Limit user access with Just-In-Time and Just-Enough-Access (JIT/JEA), risk-based adaptive
+                            policies, and data protection to secure both data and productivity.
+                        </div>
+                    </li>
+                    <li class="flex gap-4">
+                        <div
+                            class="w-8 h-8 shrink-0 rounded-full border border-green-500/50 flex items-center justify-center text-green-500 font-bold bg-green-900/20">
+                            3</div>
+                        <div>
+                            <strong class="text-white block">Assume Breach</strong>
+                            Minimize blast radius and segment access. Verify end-to-end encryption and use analytics to
+                            get visibility, drive threat detection, and improve defenses.
+                        </div>
+                    </li>
+                </ul>
+
+                <h2 id="identity-perimeter"
+                    class="font-display text-3xl font-bold mb-6 text-white flex items-center gap-3">
+                    <span class="text-green-500">02.</span> Identity is the New Perimeter
+                </h2>
+                <p class="text-gray-400 leading-relaxed mb-4">
+                    Without a physical firewall as the primary defense, <strong>Identity and Access Management
+                        (IAM)</strong> becomes the first line of defense.
+                </p>
+                <div class="border border-white/10 rounded-lg overflow-hidden">
+                    <div class="bg-gray-900 px-4 py-2 border-b border-white/10 text-xs font-mono text-gray-500">
+                        policy_engine.py</div>
+                    <pre class="m-0 bg-black"><code class="language-python"># Example: Adaptive Auth Policy Pseudo-code
+def authenticate_request(user_context):
+    if user_context.location not in TRUSTED_ZONES:
+        if user_context.device.health_score < 80:
+            return Action.DENY
+        else:
+            return Action.REQUIRE_MFA
+    
+    if user_context.resource.sensitivity == 'HIGH':
+        return Action.REQUIRE_BIOMETRIC
+        
+    return Action.ALLOW</code></pre>
+                </div>
+
+                <h2 id="micro-segmentation"
+                    class="font-display text-3xl font-bold mb-6 text-white flex items-center gap-3">
+                    <span class="text-green-500">03.</span> Micro-Segmentation
+                </h2>
+                <p class="text-gray-400 leading-relaxed">
+                    If an attacker breaches one server, they shouldn't have the keys to the kingdom. Micro-segmentation
+                    breaks the network into small, isolated zones. It's like watertight compartments on a ship; a leak
+                    in one doesn't sink the vessel.
+                </p>
+                <div class="grid grid-cols-2 gap-4 my-8">
+                    <div class="bg-black border border-white/10 p-4 rounded text-center">
+                        <div class="text-red-500 font-mono mb-2">Legacy Network</div>
+                        <div
+                            class="w-full h-20 bg-gray-800 rounded flex items-center justify-center text-xs text-gray-500">
+                            Flat Network (Lateral Movement Easy)</div>
+                    </div>
+                    <div class="bg-black border border-white/10 p-4 rounded text-center">
+                        <div class="text-green-500 font-mono mb-2">Zero Trust</div>
+                        <div class="grid grid-cols-2 gap-2 h-20">
+                            <div class="bg-gray-800 rounded flex items-center justify-center text-[10px] text-gray-500">
+                                App A</div>
+                            <div class="bg-gray-800 rounded flex items-center justify-center text-[10px] text-gray-500">
+                                DB B</div>
+                            <div class="bg-gray-800 rounded flex items-center justify-center text-[10px] text-gray-500">
+                                Cache</div>
+                            <div class="bg-gray-800 rounded flex items-center justify-center text-[10px] text-gray-500">
+                                API</div>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 id="threat-model" class="font-display text-3xl font-bold mb-6 text-white flex items-center gap-3">
+                    <span class="text-green-500">04.</span> Threat Modeling
+                </h2>
+                <p class="text-gray-400 leading-relaxed">
+                    Understanding the attacker's path is critical. STRIDE (Spoofing, Tampering, Repudiation, Information
+                    Disclosure, Denial of Service, Elevation of Privilege) is the gold standard used by Microsoft.
+                </p>
+
+                <h2 id="implementation" class="font-display text-3xl font-bold mb-6 text-white flex items-center gap-3">
+                    <span class="text-green-500">05.</span> Implementation Checklist
+                </h2>
+                <div class="space-y-2 font-mono text-sm text-gray-300 bg-white/5 p-6 rounded-lg">
+                    <label class="flex items-center gap-3 p-2 hover:bg-white/5 rounded cursor-pointer">
+                        <input type="checkbox" class="accent-green-500 w-4 h-4" checked onclick="return false;">
+                        <span>Enforce MFA for all users</span>
+                    </label>
+                    <label class="flex items-center gap-3 p-2 hover:bg-white/5 rounded cursor-pointer">
+                        <input type="checkbox" class="accent-green-500 w-4 h-4">
+                        <span>Implement Device Health Checks</span>
+                    </label>
+                    <label class="flex items-center gap-3 p-2 hover:bg-white/5 rounded cursor-pointer">
+                        <input type="checkbox" class="accent-green-500 w-4 h-4">
+                        <span>Deploy Micro-segmentation rules</span>
+                    </label>
+                    <label class="flex items-center gap-3 p-2 hover:bg-white/5 rounded cursor-pointer">
+                        <input type="checkbox" class="accent-green-500 w-4 h-4">
+                        <span>Automate Threat Response</span>
+                    </label>
+                </div>
+
+                <div class="flex items-center justify-between pt-12 border-t border-white/10">
+                    <div class="flex flex-col gap-2">
+                        <span class="text-xs font-mono text-gray-500 uppercase">Tags</span>
+                        <div class="flex gap-2">
+                            <span
+                                class="px-3 py-1 rounded-full border border-white/10 text-xs text-gray-400 bg-white/5">#Cybersecurity</span>
+                            <span
+                                class="px-3 py-1 rounded-full border border-white/10 text-xs text-gray-400 bg-white/5">#InfoSec</span>
+                            <span
+                                class="px-3 py-1 rounded-full border border-white/10 text-xs text-gray-400 bg-white/5">#Architecture</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Sidebar (Advanced) -->
+        <aside class="hidden lg:block relative">
+            <div class="toc-sticky space-y-8">
+
+                <!-- Profile Widget -->
+                <div class="sidebar-widget sidebar-profile">
+                    <div class="profile-avatar">
+                        <img src="../Images/Person/image1.jpg" alt="Muneeb">
+                    </div>
+                    <h4 class="text-white font-bold">Muneeb Shafique</h4>
+                    <p class="text-xs text-gray-400 mt-1">Security Engineer</p>
+                    <div class="flex justify-center gap-3 mt-4">
+                        <a href="https://www.linkedin.com/in/muneeb-shafiq/" target="_blank"
+                            class="text-gray-500 hover:text-white transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                            </svg>
+                        </a>
+                        <a href="https://github.com/muneeb-shafique" target="_blank"
+                            class="text-gray-500 hover:text-white transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Reading Stats -->
+                <div id="reading-stats">
+                    <span>loading...</span>
+                </div>
+
+                <!-- Table of Contents -->
+                <nav class="space-y-1">
+                    <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-4">Contents</h4>
+                    <a href="#core-principles" class="toc-link">Core Principles</a>
+                    <a href="#identity-perimeter" class="toc-link">Identity is the New Perimeter</a>
+                    <a href="#micro-segmentation" class="toc-link">Micro-Segmentation</a>
+                    <a href="#threat-model" class="toc-link">Threat Modeling</a>
+                    <a href="#implementation" class="toc-link">Implementation Checklist</a>
+                </nav>
+
+                <!-- Newsletter -->
+                <div class="sidebar-widget">
+                    <h4 class="text-sm font-bold text-white mb-2">Neural Newsletter</h4>
+                    <p class="text-xs text-gray-400 mb-4">Get byte-sized architecture tips weekly.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="email@address.com">
+                        <button type="button">SUBSCRIBE</button>
+                    </form>
+                </div>
+
+                <!-- Tag Cloud -->
+                <div class="tag-cloud">
+                    <span class="tag-chip">#Security</span>
+                    <span class="tag-chip">#ZeroTrust</span>
+                    <span class="tag-chip">#Cloud</span>
+                    <span class="tag-chip">#IAM</span>
+                    <span class="tag-chip">#Defense</span>
+                </div>
+
+            </div>
+        </aside>
+
+    </div>
+
+    <!-- Related Articles -->
+    <section class="py-20 border-t border-white/5 bg-black/20">
+        <div class="max-w-7xl mx-auto px-6">
+            <h3 class="font-display text-2xl font-bold mb-10">Related Signals</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Related 1 -->
+                <a href="ai-future-2026.html"
+                    class="glass-panel p-6 rounded-xl border border-white/5 group hover:border-blue-500/30 transition-all">
+                    <span class="text-xs font-mono text-blue-400 mb-2 block">ARTIFICIAL_INTELLIGENCE</span>
+                    <h4 class="text-xl font-bold mb-2 group-hover:text-blue-400 transition-colors">The Future of AI in
+                        2026</h4>
+                    <p class="text-sm text-gray-500">Beyond generative models.</p>
+                </a>
+                <!-- Related 2 -->
+                <a href="modern-csharp-dev.html"
+                    class="glass-panel p-6 rounded-xl border border-white/5 group hover:border-purple-500/30 transition-all">
+                    <span class="text-xs font-mono text-purple-400 mb-2 block">CSHARP_DESKTOP_V1</span>
+                    <h4 class="text-xl font-bold mb-2 group-hover:text-purple-400 transition-colors">Modern Desktop
+                        Architecture</h4>
+                    <p class="text-sm text-gray-500">Why C# still rules the desktop.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10 text-center border-t border-white/10">
+        <p class="text-xs text-gray-700">© 2026 Muneeb Shafique. // <a href="../index.html"
+                class="hover:text-white">Return to Base</a></p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="../script.js"></script>
+</body>
+
+</html>
