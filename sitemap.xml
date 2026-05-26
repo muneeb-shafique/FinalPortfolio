@@ -3,31 +3,31 @@
     <!-- Main Pages -->
     <url>
         <loc>https://muneeb-shafique.github.io/FinalPortfolio/index.html</loc>
-        <lastmod>2026-01-25</lastmod>
+        <lastmod>2026-05-26</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://muneeb-shafique.github.io/FinalPortfolio/about.html</loc>
-        <lastmod>2026-01-25</lastmod>
+        <lastmod>2026-05-26</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://muneeb-shafique.github.io/FinalPortfolio/projects.html</loc>
-        <lastmod>2026-01-25</lastmod>
+        <lastmod>2026-05-26</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://muneeb-shafique.github.io/FinalPortfolio/contact.html</loc>
-        <lastmod>2026-01-25</lastmod>
+        <lastmod>2026-05-26</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://muneeb-shafique.github.io/FinalPortfolio/blogs.html</loc>
-        <lastmod>2026-01-25</lastmod>
+        <lastmod>2026-05-26</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -35,37 +35,37 @@
     <!-- Blog Posts -->
     <url>
         <loc>https://muneeb-shafique.github.io/FinalPortfolio/Blogs/ai-future-2026.html</loc>
-        <lastmod>2026-01-25</lastmod>
+        <lastmod>2026-05-26</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
     <url>
         <loc>https://muneeb-shafique.github.io/FinalPortfolio/Blogs/ml-pipelines.html</loc>
-        <lastmod>2026-01-25</lastmod>
+        <lastmod>2026-05-26</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
     <url>
         <loc>https://muneeb-shafique.github.io/FinalPortfolio/Blogs/modern-csharp-dev.html</loc>
-        <lastmod>2026-01-25</lastmod>
+        <lastmod>2026-05-26</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
     <url>
         <loc>https://muneeb-shafique.github.io/FinalPortfolio/Blogs/next-gen-web.html</loc>
-        <lastmod>2026-01-25</lastmod>
+        <lastmod>2026-05-26</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
     <url>
         <loc>https://muneeb-shafique.github.io/FinalPortfolio/Blogs/optimizing-python.html</loc>
-        <lastmod>2026-01-25</lastmod>
+        <lastmod>2026-05-26</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
     <url>
         <loc>https://muneeb-shafique.github.io/FinalPortfolio/Blogs/zero-trust-security.html</loc>
-        <lastmod>2026-01-25</lastmod>
+        <lastmod>2026-05-26</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
