@@ -74,42 +74,6 @@ cards.forEach(card => {
 });
 
 
-// --- 4. Hacker Text Scramble Effect ---
-const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890#@$%&";
-
-document.querySelectorAll('[data-scramble="true"]').forEach(target => {
-    target.addEventListener('mouseenter', event => {
-        let iteration = 0;
-        let interval = null;
-        const originalText = event.target.innerText;
-
-        clearInterval(interval);
-
-        interval = setInterval(() => {
-            event.target.innerText = originalText
-                .split("")
-                .map((letter, index) => {
-                    if (index < iteration) {
-                        return originalText[index];
-                    }
-                    return letters[Math.floor(Math.random() * 26)];
-                })
-                .join("");
-
-            if (iteration >= originalText.length) {
-                clearInterval(interval);
-            }
-
-            iteration += 1 / 3;
-        }, 30);
-
-        target.addEventListener('mouseleave', () => {
-            clearInterval(interval);
-            event.target.innerText = originalText;
-        }, { once: true });
-    });
-});
-
 
 // --- 5. Terminal Typewriter (Data Science Edition) ---
 const terminalContent = document.getElementById('terminal-content');
@@ -468,56 +432,56 @@ const initBlogSystem = () => {
     const blogs = [
         {
             title: "The Future of AI in 2026",
-            excerpt: "Exploring the next generation of generative models and their impact on software architecture.",
+            excerpt: "Exploring the next generation of agentic AI systems, reasoning architectures, and their practical implications.",
             category: "ai",
             date: "Jan 24, 2026",
             readTime: "5 min",
-            tags: ["AI", "Future", "Tech"],
+            tags: ["AI", "Agents", "Future"],
             link: "Blogs/ai-future-2026.html"
         },
         {
-            title: "Zero-Trust Security Architecture",
-            excerpt: "Why traditional perimeter defense is dead and how to implement identity-based security.",
+            title: "Adversarial Attacks on ML Models",
+            excerpt: "Understanding security risks in neural networks and practical defense methods to build robust AI.",
             category: "cyber",
             date: "Jan 18, 2026",
             readTime: "8 min",
-            tags: ["Security", "Cyber", "Protocol"],
-            link: "Blogs/zero-trust-security.html"
+            tags: ["AI Security", "Robustness", "ML"],
+            link: "Blogs/adversarial-ml-security.html"
         },
         {
             title: "Optimizing Python for Scale",
-            excerpt: "Advanced techniques for making Python applications handle millions of requests.",
+            excerpt: "Advanced concurrency patterns, profiling tools, and memory optimizations for large-scale data systems.",
             category: "data",
             date: "Jan 10, 2026",
             readTime: "6 min",
-            tags: ["Python", "Performance", "Backend"],
+            tags: ["Python", "Performance", "Optimization"],
             link: "Blogs/optimizing-python.html"
         },
         {
-            title: "Modern Desktop Architecture",
-            excerpt: "Why C# and .NET 9 are the powerhouses for high-performance native desktop applications.",
-            category: "web", // Using 'web' as proxy for 'dev' or adding 'csharp' category
+            title: "Fine-Tuning LLMs on Consumer GPUs",
+            excerpt: "A practical developer's guide to model quantization, LoRA, and training large language models on local hardware.",
+            category: "ai",
             date: "Feb 02, 2026",
             readTime: "7 min",
-            tags: ["C#", "Desktop", ".NET"],
-            link: "Blogs/modern-csharp-dev.html"
+            tags: ["LLM", "Fine-Tuning", "GPU"],
+            link: "Blogs/fine-tuning-llms.html"
         },
         {
-            title: "State of the Web 2026",
-            excerpt: "The post-framework era: Micro-frontends, Edge Computing, and Generative UI.",
-            category: "web",
+            title: "Feature Engineering for Time-Series",
+            excerpt: "How to construct rolling windows, lag features, and domain-specific indicators to improve model accuracy.",
+            category: "data",
             date: "Jan 05, 2026",
             readTime: "6 min",
-            tags: ["Web", "Future", "Arch"],
-            link: "Blogs/next-gen-web.html"
+            tags: ["Time-Series", "Pandas", "Feature Engineering"],
+            link: "Blogs/time-series-features.html"
         },
         {
             title: "End-to-End ML Pipelines",
-            excerpt: "From data ingestion to model deployment: automating the lifecycle of AI with MLOps.",
-            category: "data",
+            excerpt: "From data ingestion to model deployment: automating the lifecycle of AI with MLOps and Kubernetes.",
+            category: "mlops",
             date: "Dec 15, 2025",
             readTime: "9 min",
-            tags: ["MLOps", "Data", "Pipeline"],
+            tags: ["MLOps", "Kubernetes", "Pipelines"],
             link: "Blogs/ml-pipelines.html"
         }
     ];
