@@ -568,8 +568,9 @@
                                 </div>
                                 <span class="relative z-10 text-blue-400 font-mono text-xs mb-2 block">> STEP_01</span>
                                 <div class="relative z-10 font-mono text-gray-300 text-xs">
-                                    def analyze(data):<br>
-                                    &nbsp;&nbsp;return patterns
+                                    def analyze(data: pd.DataFrame):<br>
+                                    &nbsp;&nbsp;nulls = data.isnull().sum()<br>
+                                    &nbsp;&nbsp;return data.dropna().reset_index(drop=True)
                                 </div>
                             </div>
                         </div>
@@ -595,8 +596,8 @@
                                 <span class="relative z-10 text-purple-400 font-mono text-xs mb-2 block">>
                                     STEP_02</span>
                                 <div class="relative z-10 font-mono text-gray-300 text-xs text-left">
-                                    class System(Core):<br>
-                                    &nbsp;&nbsp;await deploy()
+                                    model = RandomForestClassifier(n_estimators=100)<br>
+                                    model.fit(X_train, y_train)
                                 </div>
                             </div>
                         </div>
@@ -621,8 +622,8 @@
                                 </div>
                                 <span class="relative z-10 text-pink-400 font-mono text-xs mb-2 block">> STEP_03</span>
                                 <div class="relative z-10 font-mono text-gray-300 text-xs">
-                                    assert quality > 99<br>
-                                    optimize(memory)
+                                    score = cross_val_score(model, X, y, cv=5)<br>
+                                    assert score.mean() &gt; 0.90
                                 </div>
                             </div>
                         </div>
@@ -647,6 +648,7 @@
                                 </div>
                                 <span class="relative z-10 text-green-400 font-mono text-xs mb-2 block">> STEP_04</span>
                                 <div class="relative z-10 font-mono text-gray-300 text-xs text-left">
+                                    >> Model Accuracy: 94.7%<br>
                                     >> SYSTEM_ONLINE<br>
                                     >> 200 OK
                                 </div>
