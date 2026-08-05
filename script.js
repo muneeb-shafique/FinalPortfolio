@@ -879,7 +879,6 @@ const initBlogInteractions = () => {
 };
 
 window.addEventListener('DOMContentLoaded', () => {
-    initThreeJS();
     initGSAP();
     setupMobileMenu();
     initTiltCards();
