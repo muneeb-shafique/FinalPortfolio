@@ -16,7 +16,7 @@
 body {
     background-color: var(--background);
     color: #ffffff;
-    cursor: none;
+    cursor: auto;
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
 }
@@ -36,39 +36,159 @@ h6 {
 }
 
 /* Custom Cursor */
-.cursor-dot {
-    width: 8px;
-    height: 8px;
-    background: white;
-    border-radius: 50%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-    z-index: 9999;
-    mix-blend-mode: exclusion;
-    transition: transform 0.1s;
-}
-
+.cursor-dot,
 .cursor-circle {
-    width: 40px;
-    height: 40px;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    border-radius: 50%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-    z-index: 9999;
-    transition: width 0.3s, height 0.3s, border-color 0.3s, background-color 0.3s, transform 0.3s ease-out;
-    mix-blend-mode: exclusion;
+    display: none !important;
 }
 
 body.hovering .cursor-circle {
-    width: 60px;
-    height: 60px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-color: transparent;
+    display: none !important;
+}
+
+.cert-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.cert-modal.hidden {
+    display: none;
+}
+
+.cert-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.78);
+    backdrop-filter: blur(8px);
+}
+
+.cert-modal-panel {
+    position: relative;
+    width: min(980px, 100%);
+    max-height: 92vh;
+    overflow: hidden;
+    background: rgba(4, 4, 4, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 24px;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+    z-index: 1;
+}
+
+.cert-modal-main {
+    display: grid;
+    grid-template-columns: 1.3fr 0.7fr;
+    gap: 20px;
+    padding: 24px;
+    max-height: 72vh;
+    overflow: auto;
+}
+
+.cert-modal-image-wrap {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    padding: 12px;
+}
+
+.cert-modal-image {
+    width: 100%;
+    max-height: 68vh;
+    object-fit: contain;
+    border-radius: 14px;
+    display: block;
+}
+
+.cert-modal-meta {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.cert-modal-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.cert-modal-proof-link,
+.cert-modal-nav,
+.cert-modal-close {
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.04);
+    color: white;
+    border-radius: 999px;
+    padding: 10px 14px;
+    cursor: pointer;
+}
+
+.cert-modal-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+}
+
+.cert-modal-scrollbar-wrap {
+    padding: 0 24px 24px;
+}
+
+.cert-modal-thumbs {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+}
+
+.cert-modal-thumb {
+    flex: 0 0 140px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 6px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.cert-modal-thumb img {
+    width: 100%;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+}
+
+.cert-modal-thumb-label {
+    font-size: 0.72rem;
+    color: #cbd5e1;
+    text-align: center;
+}
+
+.cert-modal-thumb-proof {
+    font-size: 0.72rem;
+    color: #93c5fd;
+    text-decoration: none;
+    text-align: center;
+}
+
+.cert-modal-thumb-proof:hover {
+    color: #bfdbfe;
+}
+
+.cert-modal-thumb.is-active {
+    border-color: rgba(59, 130, 246, 0.95);
+    box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.65);
+}
+
+@media (max-width: 768px) {
+    .cert-modal-main {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* Glassmorphism Utilities */

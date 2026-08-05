@@ -73,6 +73,138 @@ cards.forEach(card => {
     });
 });
 
+// --- 4. Certificate Gallery Modal ---
+const certButtons = Array.from(document.querySelectorAll('.cert-card-button'));
+const certModal = document.getElementById('certificate-modal');
+const certModalImage = document.getElementById('certificate-modal-image');
+const certModalTitle = document.getElementById('certificate-modal-title');
+const certModalCaption = document.getElementById('certificate-modal-caption');
+const certModalClose = document.getElementById('certificate-modal-close');
+const certModalPrev = document.getElementById('certificate-modal-prev');
+const certModalNext = document.getElementById('certificate-modal-next');
+const certModalProofLink = document.getElementById('certificate-modal-proof-link');
+const certModalThumbs = document.getElementById('certificate-modal-thumbs');
+
+const certGalleryItems = certButtons.map((button) => ({
+    src: button.dataset.src,
+    title: button.dataset.title,
+    caption: button.dataset.caption,
+    alt: button.dataset.alt,
+    proofUrl: button.dataset.proofUrl,
+}));
+
+let activeCertIndex = 0;
+
+function renderCertThumbs() {
+    if (!certModalThumbs) return;
+
+    certModalThumbs.innerHTML = '';
+
+    certGalleryItems.forEach((item, index) => {
+        const thumbButton = document.createElement('div');
+        thumbButton.className = `cert-modal-thumb ${index === activeCertIndex ? 'is-active' : ''}`;
+        thumbButton.setAttribute('role', 'button');
+        thumbButton.setAttribute('tabindex', '0');
+        thumbButton.setAttribute('aria-label', `Open ${item.title}`);
+        thumbButton.innerHTML = `
+            <img src="${item.src}" alt="${item.alt}">
+            <span class="cert-modal-thumb-label">${item.title}</span>
+            <a href="${item.proofUrl || '#'}" target="_blank" rel="noopener" class="cert-modal-thumb-proof">View credential ↗</a>
+        `;
+
+        thumbButton.addEventListener('click', (event) => {
+            if (event.target.closest('a')) return;
+            showCertModal(index);
+        });
+
+        thumbButton.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                showCertModal(index);
+            }
+        });
+
+        certModalThumbs.appendChild(thumbButton);
+    });
+}
+
+function showCertModal(index) {
+    if (!certModal || !certModalImage || !certModalTitle || !certModalCaption) return;
+
+    activeCertIndex = index;
+    const cert = certGalleryItems[activeCertIndex];
+
+    certModalImage.src = cert.src;
+    certModalImage.alt = cert.alt;
+    certModalTitle.textContent = cert.title;
+    certModalCaption.textContent = cert.caption;
+
+    if (certModalProofLink) {
+        certModalProofLink.href = cert.proofUrl || '#';
+    }
+
+    certModal.classList.remove('hidden');
+    certModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+
+    renderCertThumbs();
+}
+
+function hideCertModal() {
+    if (!certModal) return;
+
+    certModal.classList.add('hidden');
+    certModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+}
+
+certButtons.forEach((button, index) => {
+    button.addEventListener('click', () => showCertModal(index));
+});
+
+if (certModalClose) {
+    certModalClose.addEventListener('click', hideCertModal);
+}
+
+if (certModalPrev) {
+    certModalPrev.addEventListener('click', () => {
+        const nextIndex = (activeCertIndex - 1 + certGalleryItems.length) % certGalleryItems.length;
+        showCertModal(nextIndex);
+    });
+}
+
+if (certModalNext) {
+    certModalNext.addEventListener('click', () => {
+        const nextIndex = (activeCertIndex + 1) % certGalleryItems.length;
+        showCertModal(nextIndex);
+    });
+}
+
+if (certModal) {
+    certModal.addEventListener('click', (event) => {
+        if (event.target instanceof HTMLElement && event.target.dataset.closeModal === 'true') {
+            hideCertModal();
+        }
+    });
+}
+
+document.addEventListener('keydown', (event) => {
+    if (certModal && !certModal.classList.contains('hidden')) {
+        if (event.key === 'Escape') {
+            hideCertModal();
+        }
+
+        if (event.key === 'ArrowLeft') {
+            const nextIndex = (activeCertIndex - 1 + certGalleryItems.length) % certGalleryItems.length;
+            showCertModal(nextIndex);
+        }
+
+        if (event.key === 'ArrowRight') {
+            const nextIndex = (activeCertIndex + 1) % certGalleryItems.length;
+            showCertModal(nextIndex);
+        }
+    }
+});
 
 
 // --- 5. Terminal Typewriter (Data Science Edition) ---

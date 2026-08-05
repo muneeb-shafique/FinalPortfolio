@@ -158,14 +158,6 @@
     <!-- Mobile Menu Overlay -->
     <div id="mobile-menu-overlay"
         class="fixed inset-0 z-50 bg-black/90 backdrop-blur-xl flex flex-col justify-center items-center opacity-0 pointer-events-none transition-all duration-500">
-        <!-- Background Effects -->
-        <div class="absolute inset-0 overflow-hidden pointer-events-none">
-            <div
-                class="absolute -top-[20%] -left-[20%] w-[70vw] h-[70vw] bg-blue-600/20 rounded-full blur-[100px] animate-pulse">
-            </div>
-            <div class="absolute bottom-[10%] right-[10%] w-[50vw] h-[50vw] bg-purple-600/20 rounded-full blur-[100px] animate-pulse"
-                style="animation-delay: 1s;"></div>
-        </div>
 
         <nav class="relative z-10 flex flex-col items-center gap-8 text-center">
             <div class="overflow-hidden">
@@ -207,7 +199,6 @@
         <div class="max-w-4xl mx-auto">
             <div
                 class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 w-fit backdrop-blur-md mb-8">
-                <span class="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></span>
                 <span class="text-xs font-medium text-gray-300 tracking-wide uppercase">The Researcher</span>
             </div>
             <h1 class="font-display text-5xl md:text-7xl font-bold mb-8">
@@ -283,86 +274,82 @@
         <div class="max-w-7xl mx-auto px-6">
             <h2 class="font-display text-3xl font-bold mb-12">Certifications & Learning</h2>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Cert Card -->
-                <div class="glass-panel p-6 rounded-2xl hover:bg-white/5 transition-colors group">
-                    <div class="flex items-center justify-between mb-4">
-                        <div
-                            class="w-10 h-10 rounded-lg bg-blue-900/30 flex items-center justify-center text-blue-400 font-bold text-lg">
-                            IB</div>
-                        <div class="text-xs font-mono text-gray-500 border border-white/10 px-2 py-1 rounded">IBM</div>
-                    </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="glass-panel p-4 rounded-2xl hover:bg-white/5 transition-colors group">
+                    <button type="button" class="cert-card-button block w-full text-left"
+                        data-src="Documents/Certificates/coursera_ml"
+                        data-title="Supervised Machine Learning: Regression and Classification"
+                        data-caption="Coursera • Andrew Ng"
+                        data-alt="Coursera certificate for Supervised Machine Learning: Regression and Classification"
+                        data-proof-url="https://coursera.org/share/38d01a536b8866e0e8fc2e56f15785f5">
+                        <img src="Documents/Certificates/coursera_ml" alt="Coursera certificate for Supervised Machine Learning: Regression and Classification"
+                            class="w-full h-56 object-cover rounded-xl mb-4 border border-white/10" />
+                    </button>
+                    <h3 class="text-xl font-bold mb-1">Supervised Machine Learning: Regression and Classification</h3>
+                    <p class="text-sm text-gray-400">Coursera • Andrew Ng</p>
+                    <a href="https://coursera.org/share/38d01a536b8866e0e8fc2e56f15785f5" target="_blank" rel="noopener"
+                        class="text-sm text-blue-300 hover:text-blue-200 mt-3 inline-flex items-center gap-1">View credential ↗</a>
+                </div>
+
+                <div class="glass-panel p-4 rounded-2xl hover:bg-white/5 transition-colors group">
+                    <button type="button" class="cert-card-button block w-full text-left"
+                        data-src="Documents/Certificates/kaggle_ml_int.png"
+                        data-title="Intermediate Machine Learning"
+                        data-caption="Kaggle • Issued Jul 2026"
+                        data-alt="Kaggle certificate for Intermediate Machine Learning"
+                        data-proof-url="https://www.kaggle.com/learn/certification/muneebshafique512/intermediate-machine-learning">
+                        <img src="Documents/Certificates/kaggle_ml_int.png" alt="Kaggle certificate for Intermediate Machine Learning"
+                            class="w-full h-56 object-cover rounded-xl mb-4 border border-white/10" />
+                    </button>
+                    <h3 class="text-xl font-bold mb-1">Intermediate Machine Learning</h3>
+                    <p class="text-sm text-gray-400">Kaggle • Issued Jul 2026</p>
+                    <a href="https://www.kaggle.com/learn/certification/muneebshafique512/intermediate-machine-learning" target="_blank" rel="noopener"
+                        class="text-sm text-blue-300 hover:text-blue-200 mt-3 inline-flex items-center gap-1">View credential ↗</a>
+                </div>
+
+                <div class="glass-panel p-4 rounded-2xl hover:bg-white/5 transition-colors group">
+                    <button type="button" class="cert-card-button block w-full text-left"
+                        data-src="Documents/Certificates/python_ibm.png"
+                        data-title="Python for Data Science"
+                        data-caption="Cognitive Class by IBM"
+                        data-alt="IBM / Cognitive Class certificate for Python for Data Science"
+                        data-proof-url="https://courses.cognitiveclass.ai/certificates/373b29650e384f1ab753d43b15fcb486">
+                        <img src="Documents/Certificates/python_ibm.png" alt="IBM / Cognitive Class certificate for Python for Data Science"
+                            class="w-full h-56 object-cover rounded-xl mb-4 border border-white/10" />
+                    </button>
                     <h3 class="text-xl font-bold mb-1">Python for Data Science</h3>
-                    <p class="text-sm text-gray-400">Cognitive Class By IBM</p>
-                </div>
-
-                <!-- Cert Card -->
-                <div class="glass-panel p-6 rounded-2xl hover:bg-white/5 transition-colors group">
-                    <div class="flex items-center justify-between mb-4">
-                        <div
-                            class="w-10 h-10 rounded-lg bg-green-900/30 flex items-center justify-center text-green-400 font-bold text-lg">
-                            DC</div>
-                        <div class="text-xs font-mono text-gray-500 border border-white/10 px-2 py-1 rounded">DataCamp
-                        </div>
-                    </div>
-                    <h3 class="text-xl font-bold mb-1">Intermediate Python</h3>
-                    <p class="text-sm text-gray-400">Mastering data structures & logic</p>
-                </div>
-
-                <!-- Cert Card -->
-                <div class="glass-panel p-6 rounded-2xl hover:bg-white/5 transition-colors group">
-                    <div class="flex items-center justify-between mb-4">
-                        <div
-                            class="w-10 h-10 rounded-lg bg-yellow-900/30 flex items-center justify-center text-yellow-400 font-bold text-lg">
-                            PY</div>
-                        <div class="text-xs font-mono text-gray-500 border border-white/10 px-2 py-1 rounded">
-                            Intellipaat</div>
-                    </div>
-                    <h3 class="text-xl font-bold mb-1">Pandas Course</h3>
-                    <p class="text-sm text-gray-400">Data Manipulation & Analysis</p>
-                </div>
-
-                <!-- Cert Card -->
-                <div class="glass-panel p-6 rounded-2xl hover:bg-white/5 transition-colors group">
-                    <div class="flex items-center justify-between mb-4">
-                        <div
-                            class="w-10 h-10 rounded-lg bg-purple-900/30 flex items-center justify-center text-purple-400 font-bold text-lg">
-                            DL</div>
-                        <div class="text-xs font-mono text-gray-500 border border-white/10 px-2 py-1 rounded">Coursera
-                        </div>
-                    </div>
-                    <h3 class="text-xl font-bold mb-1">Deep Learning</h3>
-                    <p class="text-sm text-gray-400">Deep Learning Specialization (Andrew Ng)</p>
-                </div>
-
-                <!-- Cert Card -->
-                <div class="glass-panel p-6 rounded-2xl hover:bg-white/5 transition-colors group">
-                    <div class="flex items-center justify-between mb-4">
-                        <div
-                            class="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center text-blue-300 font-bold text-lg">
-                            MS</div>
-                        <div class="text-xs font-mono text-gray-500 border border-white/10 px-2 py-1 rounded">Microsoft
-                        </div>
-                    </div>
-                    <h3 class="text-xl font-bold mb-1">MLA Student Ambassador</h3>
-                    <p class="text-sm text-gray-400">UET Lahore Chapter Leader</p>
-                </div>
-
-                <!-- Cert Card -->
-                <div class="glass-panel p-6 rounded-2xl hover:bg-white/5 transition-colors group">
-                    <div class="flex items-center justify-between mb-4">
-                        <div
-                            class="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center text-gray-400 font-bold text-lg">
-                            SQL</div>
-                        <div class="text-xs font-mono text-gray-500 border border-white/10 px-2 py-1 rounded">DataCamp
-                        </div>
-                    </div>
-                    <h3 class="text-xl font-bold mb-1">SQL Course</h3>
-                    <p class="text-sm text-gray-400">Database Management</p>
+                    <p class="text-sm text-gray-400">Cognitive Class by IBM</p>
+                    <a href="https://courses.cognitiveclass.ai/certificates/373b29650e384f1ab753d43b15fcb486" target="_blank" rel="noopener"
+                        class="text-sm text-blue-300 hover:text-blue-200 mt-3 inline-flex items-center gap-1">View credential ↗</a>
                 </div>
             </div>
         </div>
     </section>
+
+    <div id="certificate-modal" class="cert-modal hidden" aria-hidden="true">
+        <div class="cert-modal-backdrop" data-close-modal="true"></div>
+        <div class="cert-modal-panel" role="dialog" aria-modal="true" aria-labelledby="certificate-modal-title">
+            <button type="button" id="certificate-modal-close" class="cert-modal-close" aria-label="Close certificate gallery">✕</button>
+            <div class="cert-modal-main">
+                <div class="cert-modal-image-wrap">
+                    <img id="certificate-modal-image" src="" alt="" class="cert-modal-image" />
+                </div>
+                <div class="cert-modal-meta">
+                    <h3 id="certificate-modal-title" class="text-2xl font-bold mb-2"></h3>
+                    <p id="certificate-modal-caption" class="text-sm text-gray-400 mb-4"></p>
+                    <div class="cert-modal-actions">
+                        <button type="button" id="certificate-modal-prev" class="cert-modal-nav">← Previous</button>
+                        <button type="button" id="certificate-modal-next" class="cert-modal-nav">Next →</button>
+                        <a id="certificate-modal-proof-link" href="#" target="_blank" rel="noopener"
+                            class="cert-modal-proof-link">View credential ↗</a>
+                    </div>
+                </div>
+            </div>
+            <div class="cert-modal-scrollbar-wrap">
+                <div id="certificate-modal-thumbs" class="cert-modal-thumbs"></div>
+            </div>
+        </div>
+    </div>
 
     <!-- Relevant Coursework Section -->
     <section class="py-20 border-b border-white/5">
